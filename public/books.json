@@ -1,0 +1,82 @@
+[
+  {
+    "title": "To Kill a Mockingbird",
+    "author": "Harper Lee",
+    "genre": "Mystery",
+    "publicationDate": "2022-03-15",
+    "reviews": "4.5",
+    "imageURL": "https://res.cloudinary.com/bookbub/image/upload/t_ci_ar_6:9_padded,f_auto,q_auto,dpr_1,c_scale,w_405/v1667267514/pro_pbid_14442.jpg"
+  },
+  {
+    "title": "Goliath",
+    "author": "Richard Turner",
+    "genre": "Historical Fiction",
+    "publicationDate": "2021-09-10",
+    "reviews": "4.8",
+    "imageURL": "https://res.cloudinary.com/bookbub/image/upload/t_ci_ar_6:9_padded,f_auto,q_auto,dpr_1/v1516218702/pro_pbid_15286.jpg"
+  },
+  {
+    "title": "Harper Lee Collection E-book Bundle",
+    "author": "Harper Leem",
+    "genre": "Romance",
+    "publicationDate": "2023-01-05",
+    "reviews": "4.2",
+    "imageURL": "https://res.cloudinary.com/bookbub/image/upload/t_ci_ar_6:9_padded,f_auto,q_auto,dpr_1,c_scale,w_405/v1521493858/pro_pbid_954805.jpg"
+  },
+  {
+    "title": "Touch of Regret",
+    "author": "Autumn Reed",
+    "genre": "Fantasy",
+    "publicationDate": "2022-11-20",
+    "reviews": "4.7",
+    "imageURL": "https://res.cloudinary.com/bookbub/image/upload/t_ci_ar_6:9_padded,f_auto,q_auto,dpr_1/v1687989945/pro_pbid_4267251.jpg"
+  },
+  {
+    "title": "Sentence of Marriage",
+    "author": "Shayne Parkinson",
+    "genre": "Historical Fiction",
+    "publicationDate": "2023-07-01",
+    "reviews": "4.6",
+    "imageURL": "https://res.cloudinary.com/bookbub/image/upload/t_ci_ar_6:9_padded,f_auto,q_auto,dpr_1/v1468510103/pro_pbid_10270.jpg"
+  },
+  {
+    "title": "The Horror at Murden Cove",
+    "author": "D.D. Black",
+    "genre": "Thriller",
+    "publicationDate": "2023-04-12",
+    "reviews": "4.9",
+    "imageURL": "https://res.cloudinary.com/bookbub/image/upload/t_ci_ar_6:9_padded,f_auto,q_auto,dpr_1/v1669162425/pro_pbid_5616666.jpg"
+  },
+  {
+    "title": "Any Means Necessary",
+    "author": "Jack Mars",
+    "genre": "Adventure",
+    "publicationDate": "2022-06-08",
+    "reviews": "4.3",
+    "imageURL": "https://res.cloudinary.com/bookbub/image/upload/t_ci_ar_6:9_padded,f_auto,q_auto,dpr_1/v1522246754/pro_pbid_2494663.jpg"
+  },
+  {
+    "title": "The Ghostly Grounds: Murder and Breakfast",
+    "author": "Sophie Love",
+    "genre": "Science Fiction",
+    "publicationDate": "2021-12-27",
+    "reviews": "4.4",
+    "imageURL": "https://res.cloudinary.com/bookbub/image/upload/t_ci_ar_6:9_padded,f_auto,q_auto,dpr_1/v1589376114/pro_pbid_4615149.jpg"
+  },
+  {
+    "title": "Shadowseer: London",
+    "author": "Morgan Rice",
+    "genre": "Suspense",
+    "publicationDate": "2023-02-18",
+    "reviews": "4.7",
+    "imageURL": "https://res.cloudinary.com/bookbub/image/upload/t_ci_ar_6:9_padded,f_auto,q_auto,dpr_1/v1663356236/pro_pbid_5147285.jpg"
+  },
+  {
+    "title": "Primary Target",
+    "author": "Jack Mars",
+    "genre": "Adventure",
+    "publicationDate": "2022-09-05",
+    "reviews": "4.6",
+    "imageURL": "https://res.cloudinary.com/bookbub/image/upload/t_ci_ar_6:9_padded,f_auto,q_auto,dpr_1/v1530568454/pro_pbid_4184104.jpg"
+  }
+]
