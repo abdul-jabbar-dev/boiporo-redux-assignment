@@ -11,7 +11,7 @@ export default function Navber() {
                     <li className=" hover:underline">about</li>
                 </ul>
                 <div>
-                    <Link className="hover:underline" to={'/login'}>Login</Link>
+                    <Link className="hover:underline" to={'/login'}>Login</Link> 
                 </div>
             </div>
         </nav>

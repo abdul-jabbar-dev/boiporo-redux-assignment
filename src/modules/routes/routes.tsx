@@ -5,13 +5,15 @@ import Layout from "../pages/home/Layout";
 import Login from "../pages/auth/Login";
 import BookDetails from "../pages/book/BookDetails";
 import Registration from "../pages/auth/Registration";
+import EditeBook from "../pages/book/EditeBook";
 
 const customRoutes = createBrowserRouter([
   {
     path: "/",
     element: <Layout />,
     children: [{ path: "", element: <Home /> },
-    { path: "books/:id", element: <BookDetails /> }
+    { path: "books/:id", element: <BookDetails /> },
+    { path: "editebooks/:id", element: <EditeBook /> }
     ],
   },
 

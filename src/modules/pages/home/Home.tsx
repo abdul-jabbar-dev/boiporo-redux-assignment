@@ -7,7 +7,7 @@ import SearchFilter from "../../components/SearchFilter"
 function Home() {
     const [books, setBooks] = useState<IBooks[]>([])
     useEffect(() => {
-        fetch("/public/books.json").then(res => res.json()).then(data => setBooks(data))
+        fetch("/books.json").then(res => res.json()).then(data => setBooks(data))
     }, [])
 
     return (
