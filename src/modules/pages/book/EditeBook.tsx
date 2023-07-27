@@ -12,7 +12,7 @@ export default function EditeBook() {
     return (
         <div className="container mx-auto">
             <div className="">
-                <form onSubmit={handleSubmit(onSubmit)} className="w-">
+                <form onSubmit={handleSubmit(onSubmit)} className="w-1/2">
                     <div className="w-full">
                         <div className="flex flex-col">
                             <label htmlFor="title">Title</label>
