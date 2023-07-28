@@ -10,7 +10,17 @@ const bookApi = createApi({
     getABook: builder.query({
       query: (id) => "/book/" + id,
     }),
+    addWishlist: builder.mutation({
+      query({ bookId, userId }) {
+        return {
+          url: `book/add_wishlist/` + bookId,
+          method: "POST",
+          body: { userId },
+        };
+      },
+    }),
   }),
 });
-export const { useGetAllBooksQuery, useGetABookQuery } = bookApi;
+export const { useGetAllBooksQuery, useGetABookQuery, useAddWishlistMutation } =
+  bookApi;
 export default bookApi;
