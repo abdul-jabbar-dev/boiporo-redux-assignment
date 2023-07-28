@@ -3,11 +3,12 @@ import CategorieList from "../../components/CategorieList"
 import SearchFilter from "../../components/SearchFilter"
 import { useGetAllBooksQuery } from "../../../redux/fetures/booksAPI/book"
 import AllBooks from "../../components/AllBooks"
+import { ClipLoader } from "react-spinners"
 
 function Home() {
     const { data: books, isLoading } = useGetAllBooksQuery(undefined)
     if (isLoading) {
-        return 
+        return <ClipLoader color="#36d7b7" />
     }
 
     return (

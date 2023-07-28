@@ -1,14 +1,15 @@
-import { useEffect, useState } from "react";
+
 import { useParams } from "react-router-dom";
-import IBooks from "../../../types/books";
 import WishlistStrok from "../../../assets/icons/WishlistStrok";
+import { useGetABookQuery } from "../../../redux/fetures/booksAPI/book";
+import { ClipLoader } from 'react-spinners';
 
 const BookDetails = () => {
     const { id } = useParams();
-    const [books, setBooks] = useState<IBooks | undefined>(undefined)
-    useEffect(() => {
-        fetch("/books.json").then(res => res.json()).then((data: IBooks[]) => setBooks(data.find(d => d.title === id)))
-    }, [id])
+    const { data: books, isLoading } = useGetABookQuery(id)
+    if (isLoading) {
+        return <ClipLoader color="#36d7b7" />
+    }
     return (
         <div>
             <div className=" container mx-auto flex gap-x-14 my-8">
