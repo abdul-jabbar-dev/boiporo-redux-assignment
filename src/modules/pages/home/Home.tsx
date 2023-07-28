@@ -1,14 +1,14 @@
-import { useEffect, useState } from "react"
-import AllBooks from "../../components/AllBooks"
-import IBooks from "../../../types/books"
+
 import CategorieList from "../../components/CategorieList"
 import SearchFilter from "../../components/SearchFilter"
+import { useGetAllBooksQuery } from "../../../redux/fetures/booksAPI/book"
+import AllBooks from "../../components/AllBooks"
 
 function Home() {
-    const [books, setBooks] = useState<IBooks[]>([])
-    useEffect(() => {
-        fetch("/books.json").then(res => res.json()).then(data => setBooks(data))
-    }, [])
+    const { data: books, isLoading } = useGetAllBooksQuery(undefined)
+    if (isLoading) {
+        return 
+    }
 
     return (
         <div className=" container mx-auto">
@@ -43,7 +43,7 @@ function Home() {
 
                     {/* books */}
                     <AllBooks books={books}></AllBooks>
-                    
+
                 </div>
             </div>
         </div>
