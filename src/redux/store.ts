@@ -1,6 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
+import bookApi from "./fetures/booksAPI/book";
 
 const store = configureStore({
-  reducer: {},
+  reducer: {
+    [bookApi.reducerPath]: bookApi.reducer,
+  },
 });
-export default store; 
+export default store;

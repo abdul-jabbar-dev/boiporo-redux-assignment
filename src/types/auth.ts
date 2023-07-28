@@ -7,4 +7,4 @@ export type TRegistrationInputs = {
   name: string;
   email: string;
   password: string;
-};
+};  
