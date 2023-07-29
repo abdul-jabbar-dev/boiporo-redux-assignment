@@ -1,13 +1,30 @@
 import { useNavigate } from "react-router-dom"
 import { useForm, SubmitHandler } from "react-hook-form";
 import { TRegistrationInputs } from "../../../types/auth";
+import { ClipLoader } from "react-spinners";
+import { useCreateUserMutation } from "../../../redux/fetures/booksAPI/book";
 
 export default function Registration() {
+  const [makeRegistration, { data, isLoading, error }] = useCreateUserMutation()
   const location = useNavigate()
   const { register, handleSubmit, formState: { errors } } = useForm<TRegistrationInputs>();
+
+
+  if (isLoading) {
+    return <ClipLoader color="#36d7b7" />
+  }
+  if (data) {
+    alert('user create successfully')
+  } if (error) {
+    console.log(error)
+    alert((error as unknown as any)?.data)
+  }
+
+
   const onSubmit: SubmitHandler<TRegistrationInputs> = (data) => {
-    console.log(data)
+    makeRegistration(data)
   };
+
 
   return (
     <div>

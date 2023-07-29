@@ -1,14 +1,31 @@
 import { useNavigate } from "react-router-dom"
 import { useForm, SubmitHandler } from "react-hook-form";
 import { TLoginInputs } from "../../../types/auth";
-
+import { useLoginUserMutation } from "../../../redux/fetures/booksAPI/book";
+import { ClipLoader } from "react-spinners";
+import Cookie from 'js-cookie'
 
 export default function Login() {
+    const navigate = useNavigate()
+    const [makeLogin, { data, isLoading, error }] = useLoginUserMutation()
     const location = useNavigate()
     const { register, handleSubmit, formState: { errors } } = useForm<TLoginInputs>();
-    const onSubmit: SubmitHandler<TLoginInputs> = (data) => {
-        console.log(data)
+    const onSubmit: SubmitHandler<TLoginInputs> = async (data) => {
+        const res = await makeLogin({ email: data.email, password: data.password },)
+  
+        console.log(res)
     };
+
+
+    if (isLoading) {
+        return <ClipLoader color="#36d7b7" />
+    }
+    if (data) {
+
+        alert('login successfully')
+    } if (error) {
+        alert((error as unknown as any)?.data)
+    }
 
     return (
         <div>

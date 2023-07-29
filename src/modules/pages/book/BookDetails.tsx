@@ -1,12 +1,13 @@
 
 import { useParams } from "react-router-dom";
-import WishlistStrok from "../../../assets/icons/WishlistStrok";
+// import WishlistStrok from "../../../assets/icons/WishlistStrok";
 import { useGetABookQuery } from "../../../redux/fetures/booksAPI/book";
 import { ClipLoader } from 'react-spinners';
 
 const BookDetails = () => {
     const { id } = useParams();
     const { data: books, isLoading } = useGetABookQuery(id)
+    
     // const [addWishlist] = useAddWishlistMutation()
     if (isLoading) {
         return <ClipLoader color="#36d7b7" />
@@ -27,7 +28,7 @@ const BookDetails = () => {
                     </div>
                     <div className="mt-6 flex items-center gap-x-5">
                         <button className="bg-blue-700 text-white rounded-lg px-4 py-3">Click here to read </button>
-                        < WishlistStrok />
+                        {/* {<div onClick={()=>}>< WishlistStrok /></div>} */}
                     </div>
                 </div>
             </div>
