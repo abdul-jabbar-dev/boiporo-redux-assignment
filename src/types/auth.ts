@@ -1,9 +1,9 @@
-export type TLoginInputs = {
+export type TLoginInputs = { 
   email: string;
   password: string;
 };
 
-export type TRegistrationInputs = {
+export type TRegistrationInputs = { 
   name: string;
   email: string;
   password: string;

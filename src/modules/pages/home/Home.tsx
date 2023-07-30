@@ -1,12 +1,14 @@
 
 import CategorieList from "../../components/CategorieList"
 import SearchFilter from "../../components/SearchFilter"
-import { useGetAllBooksQuery } from "../../../redux/fetures/booksAPI/book"
+import { useGetAllBooksQuery, useGetUserQuery } from "../../../redux/fetures/booksAPI/book"
 import AllBooks from "../../components/AllBooks"
 import { ClipLoader } from "react-spinners"
 
 function Home() {
+    const { data: user } = useGetUserQuery({ token: localStorage.getItem("token") })
     const { data: books, isLoading } = useGetAllBooksQuery(undefined)
+    console.log(books)
     if (isLoading) {
         return <ClipLoader color="#36d7b7" />
     }
@@ -43,7 +45,7 @@ function Home() {
                     </div>
 
                     {/* books */}
-                    <AllBooks books={books}></AllBooks>
+                    <AllBooks user={user} books={books}></AllBooks>
 
                 </div>
             </div>

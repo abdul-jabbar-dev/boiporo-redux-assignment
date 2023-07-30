@@ -1,17 +1,21 @@
 
 import { useParams } from "react-router-dom";
-// import WishlistStrok from "../../../assets/icons/WishlistStrok";
-import { useGetABookQuery } from "../../../redux/fetures/booksAPI/book";
+import WishlistStrok from "../../../assets/icons/WishlistStrok";
+import { useAddReadingMutation, useAddWishlistMutation, useGetABookQuery, useGetUserQuery, useRemoveWishlistMutation } from "../../../redux/fetures/booksAPI/book";
 import { ClipLoader } from 'react-spinners';
+import WishlistBG from "../../../assets/icons/WishlistBG";
 
 const BookDetails = () => {
     const { id } = useParams();
     const { data: books, isLoading } = useGetABookQuery(id)
-    
-    // const [addWishlist] = useAddWishlistMutation()
+    const { data: user } = useGetUserQuery({ token: localStorage.getItem("token") })
+    const [addWishlist] = useAddWishlistMutation()
+    const [removeWishlist] = useRemoveWishlistMutation()
+    const [addReading, { isLoading: ReadIsLoding }] = useAddReadingMutation()
     if (isLoading) {
         return <ClipLoader color="#36d7b7" />
     }
+    console.log(user)
     return (
         <div>
             <div className=" container mx-auto flex gap-x-14 my-8">
@@ -27,8 +31,12 @@ const BookDetails = () => {
                         <a href={"/editebooks/" + books?.title}>Edite</a>
                     </div>
                     <div className="mt-6 flex items-center gap-x-5">
-                        <button className="bg-blue-700 text-white rounded-lg px-4 py-3">Click here to read </button>
-                        {/* {<div onClick={()=>}>< WishlistStrok /></div>} */}
+                        {user && user.reading.includes(books._id) ? "Already reading" : <button disabled={ReadIsLoding} onClick={() => addReading({ bookId: books._id })} className="bg-blue-700 text-white rounded-lg px-4 py-3">{ReadIsLoding ? 'Loding...' : ' Click here to read '}</button>}
+                        {
+                            user && user.wishlist.includes(books._id) ?
+                                <div onClick={() => removeWishlist({ bookId: books._id })}><WishlistBG /></div> :
+                                <div onClick={() => addWishlist({ bookId: books._id })}>< WishlistStrok /></div>
+                        }
                     </div>
                 </div>
             </div>

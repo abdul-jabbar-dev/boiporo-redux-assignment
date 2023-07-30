@@ -3,17 +3,21 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { TLoginInputs } from "../../../types/auth";
 import { useLoginUserMutation } from "../../../redux/fetures/booksAPI/book";
 import { ClipLoader } from "react-spinners";
-import Cookie from 'js-cookie'
-
 export default function Login() {
-    const navigate = useNavigate()
+    // const navigate = useNavigate()
     const [makeLogin, { data, isLoading, error }] = useLoginUserMutation()
     const location = useNavigate()
     const { register, handleSubmit, formState: { errors } } = useForm<TLoginInputs>();
     const onSubmit: SubmitHandler<TLoginInputs> = async (data) => {
-        const res = await makeLogin({ email: data.email, password: data.password },)
-  
-        console.log(res)
+        try {
+           const result =  await makeLogin({ email: data.email, password: data.password })
+ 
+            if (result?.data.token  ) {
+                localStorage.setItem('token', result.data.token)
+            }
+        } catch (error) {
+            console.error('Login error:', error);
+        }
     };
 
 
