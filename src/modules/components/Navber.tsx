@@ -7,11 +7,12 @@ export default function Navber() {
                 <div></div>
                 <ul className="list-none flex justify-center gap-20">
                     <li className=" hover:underline"><Link to={'/'}>Home</Link></li>
-                    <li className=" hover:underline">Login</li>
-                    <li className=" hover:underline">about</li>
+                    <li className=" hover:underline"><Link to={'/wishlist'}>Wishlist</Link></li>
+                    <li className=" hover:underline"><Link to={'/reading'}>Reading</Link></li>
+
                 </ul>
                 <div>
-                    <Link className="hover:underline" to={'/login'}>Login</Link> 
+                    <Link className="hover:underline" to={'/login'}>Login</Link>
                 </div>
             </div>
         </nav>

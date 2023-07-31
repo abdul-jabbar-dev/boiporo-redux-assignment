@@ -6,6 +6,8 @@ import Login from "../pages/auth/Login";
 import BookDetails from "../pages/book/BookDetails";
 import Registration from "../pages/auth/Registration";
 import EditeBook from "../pages/book/EditeBook";
+import Wishlist from "../pages/Wishlist";
+import Reading from "../pages/Reading";
 
 const customRoutes = createBrowserRouter([
   {
@@ -13,7 +15,9 @@ const customRoutes = createBrowserRouter([
     element: <Layout />,
     children: [{ path: "", element: <Home /> },
     { path: "books/:id", element: <BookDetails /> },
-    { path: "editebooks/:id", element: <EditeBook /> }
+    { path: "editebooks/:id", element: <EditeBook /> },
+    { path: "wishlist", element: <Wishlist /> },
+    { path: "reading", element: <Reading /> }
     ],
   },
 

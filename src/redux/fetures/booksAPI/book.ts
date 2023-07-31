@@ -74,6 +74,16 @@ const bookApi = createApi({
       },
       invalidatesTags: ["wishlist", "user"],
     }),
+    getBookInforFromUser: builder.query({
+      query() {
+        return {
+          url: `book/bookInfo/`,
+          headers: { token: localStorage.getItem("token") || undefined },
+          method: "Get",
+        };
+      },
+      providesTags: ["wishlist"],
+    }),
   }),
 });
 
@@ -86,5 +96,6 @@ export const {
   useCreateUserMutation,
   useGetUserQuery,
   useAddReadingMutation,
+  useGetBookInforFromUserQuery,
 } = bookApi;
 export default bookApi;
