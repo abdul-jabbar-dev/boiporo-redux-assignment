@@ -1,14 +1,13 @@
 
 import CategorieList from "../../components/CategorieList"
-import SearchFilter from "../../components/SearchFilter"
-import { useGetAllBooksQuery, useGetUserQuery } from "../../../redux/fetures/booksAPI/book"
+import SearchFilter from "../../components/SearchFilter" 
 import AllBooks from "../../components/AllBooks"
-import { ClipLoader } from "react-spinners"
+import { ClipLoader } from "react-spinners" 
+import { useGetAllBooksQuery, useGetUserQuery } from "../../../redux/fetures/booksAPI/book"
 
 function Home() {
-    const { data: user } = useGetUserQuery({ token: localStorage.getItem("token") })
-    const { data: books, isLoading } = useGetAllBooksQuery(undefined)
-    console.log(books)
+    const { data: user } = useGetUserQuery({ token: localStorage.getItem("token") },{refetchOnMountOrArgChange:true})
+    const { data: books, isLoading } = useGetAllBooksQuery(undefined) 
     if (isLoading) {
         return <ClipLoader color="#36d7b7" />
     }

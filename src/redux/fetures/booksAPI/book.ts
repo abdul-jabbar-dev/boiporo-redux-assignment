@@ -2,38 +2,12 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 const bookApi = createApi({
   reducerPath: "bookAPI",
-  tagTypes: ["wishlist", "user"],
+  tagTypes: ["wishlist", "user", "reading"],
   baseQuery: fetchBaseQuery({
     baseUrl: "http://localhost:4000",
     credentials: "include",
   }),
   endpoints: (builder) => ({
-    loginUser: builder.mutation({
-      query({ email, password }) {
-        return {
-          url: `user/login`,
-          method: "POST",
-          body: { email, password },
-        };
-      },
-    }),
-    createUser: builder.mutation({
-      query(data) {
-        return {
-          url: `user/registration`,
-          method: "POST",
-          body: data,
-        };
-      },
-    }),
-    getUser: builder.query({
-      query: (token) => ({
-        url: "user/",
-        headers: token,
-        method: "GET",
-      }),
-      providesTags: ["user"],
-    }),
     getAllBooks: builder.query({
       query: () => ({ url: "/book" }),
       providesTags: ["wishlist", "user"],
@@ -57,7 +31,7 @@ const bookApi = createApi({
       query({ bookId }) {
         console.log("bookId", bookId);
         return {
-          url: `book/add_reading/` + bookId,
+          url: `book/reading/` + bookId,
           headers: { token: localStorage.getItem("token") || undefined },
           method: "PATCH",
         };
@@ -74,6 +48,17 @@ const bookApi = createApi({
       },
       invalidatesTags: ["wishlist", "user"],
     }),
+    removeReading: builder.mutation({
+      query({ bookId }) {
+        console.log(bookId, localStorage.getItem("token"));
+        return {
+          url: `book/reading/` + bookId,
+          headers: { token: localStorage.getItem("token") || undefined },
+          method: "DELETE",
+        };
+      },
+      invalidatesTags: ["reading", "user"],
+    }),
     getBookInforFromUser: builder.query({
       query() {
         return {
@@ -82,7 +67,45 @@ const bookApi = createApi({
           method: "Get",
         };
       },
-      providesTags: ["wishlist"],
+      providesTags: ["wishlist", "reading"],
+    }),
+    //user
+    loginUser: builder.mutation({
+      query({ email, password }) {
+        return {
+          url: `user/login`,
+          method: "POST",
+          body: { email, password },
+        };
+      },
+    }),
+    logoutUser: builder.mutation({
+      query() {
+        localStorage.removeItem("token");
+        return {
+          url: `user/logout`,
+          method: "PATCH",
+          headers: { token: localStorage.getItem("token") || undefined },
+        };
+      },
+      invalidatesTags: ["user"],
+    }),
+    createUser: builder.mutation({
+      query(data) {
+        return {
+          url: `user/registration`,
+          method: "POST",
+          body: data,
+        };
+      },
+    }),
+    getUser: builder.query({
+      query: (token) => ({
+        url: "user/",
+        headers: token,
+        method: "GET",
+      }),
+      providesTags: ["user", "wishlist"],
     }),
   }),
 });
@@ -92,10 +115,12 @@ export const {
   useGetABookQuery,
   useAddWishlistMutation,
   useRemoveWishlistMutation,
+  useAddReadingMutation,
+  useRemoveReadingMutation,
+  useGetBookInforFromUserQuery,
   useLoginUserMutation,
   useCreateUserMutation,
   useGetUserQuery,
-  useAddReadingMutation,
-  useGetBookInforFromUserQuery,
+  useLogoutUserMutation,
 } = bookApi;
 export default bookApi;

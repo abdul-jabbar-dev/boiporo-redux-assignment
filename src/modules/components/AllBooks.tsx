@@ -23,8 +23,8 @@ export default function AllBooks({ user, books }: { user: TUser, books: IBooks[]
                 <div>
                     {
                         user && user.wishlist.includes(book._id) ?
-                            <div onClick={() => removeWishList({ bookId: book._id })}><WishlistBG /></div> :
-                            <div onClick={() => addWishList({ bookId: book._id })}>< WishlistStrok /></div>
+                            <div onClick={() =>{ removeWishList({ bookId: book._id })}}><WishlistBG /></div> :
+                            <div onClick={() =>{ addWishList({ bookId: book._id })}}>< WishlistStrok /></div>
                     }
                 </div>
             </div>

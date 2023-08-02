@@ -1,9 +1,9 @@
 
 import { useParams } from "react-router-dom";
 import WishlistStrok from "../../../assets/icons/WishlistStrok";
-import { useAddReadingMutation, useAddWishlistMutation, useGetABookQuery, useGetUserQuery, useRemoveWishlistMutation } from "../../../redux/fetures/booksAPI/book";
+import { useAddReadingMutation, useAddWishlistMutation, useGetABookQuery, useRemoveWishlistMutation, useGetUserQuery } from "../../../redux/fetures/booksAPI/book";
 import { ClipLoader } from 'react-spinners';
-import WishlistBG from "../../../assets/icons/WishlistBG";
+import WishlistBG from "../../../assets/icons/WishlistBG"; 
 
 const BookDetails = () => {
     const { id } = useParams();
