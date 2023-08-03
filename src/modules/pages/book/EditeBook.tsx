@@ -1,20 +1,20 @@
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useParams } from "react-router-dom"
-import IBooks from "../../../types/books";
-import { useEffect, useState } from 'react';
+import IBooks from "../../../types/books"; 
+import { useGetABookQuery } from "../../../redux/fetures/booksAPI/book";
+
 
 export default function EditeBook() {
     const { id } = useParams()
-    const [book, setBook] = useState<IBooks>()
+    const { data: book } = useGetABookQuery( id )
+
     const { register, handleSubmit, formState: { errors } } = useForm<IBooks>({
         values: book
     });
     const onSubmit: SubmitHandler<IBooks> = (data) => {
         console.log(data)
     };
-    useEffect(() => {
-        fetch('/books.json').then(res => res.json()).then((data: IBooks[]) => setBook(data.find(book => book.title === id)!))
-    }, [id])
+
 
     return (
         <div className="container mx-auto ">

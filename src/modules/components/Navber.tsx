@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { useGetUserQuery, useLogoutUserMutation } from "../../redux/fetures/booksAPI/book";
+import AddBook from "../../assets/icons/AddBook";
 
 export default function Navber() {
     const { data: user } = useGetUserQuery({ token: localStorage.getItem("token") }, { refetchOnMountOrArgChange: true })
@@ -12,7 +13,9 @@ export default function Navber() {
                     <li className=" hover:underline"><Link to={'/'}>Home</Link></li>
                     {
                         user && <><li className=" hover:underline"><Link to={'/wishlist'}>Wishlist</Link></li>
-                            <li className=" hover:underline"><Link to={'/reading'}>Reading</Link></li></>
+                            <li className=" hover:underline"><Link to={'/reading'}>Reading</Link></li>
+                            <li className=" hover:underline"><Link to={'/mybooks'}>My Books</Link></li>
+                            <li className=" hover:underline"><Link className=" flex gap-2 " to={'/addbook'}> AddBook <AddBook className="w-6 h-6" /></Link></li></>
                     }
 
                 </ul>

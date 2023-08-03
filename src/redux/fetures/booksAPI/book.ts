@@ -1,4 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import IBooks from "../../../types/books";
 
 const bookApi = createApi({
   reducerPath: "bookAPI",
@@ -8,8 +9,23 @@ const bookApi = createApi({
     credentials: "include",
   }),
   endpoints: (builder) => ({
+    createABook: builder.mutation({
+      query({ data }: { data: IBooks }) {
+        return {
+          url: `book`,
+          headers: { token: localStorage.getItem("token") || undefined },
+          method: "POST",
+          body: data,
+        };
+      },
+    }),
+    getGenre: builder.query({
+      query: () => "/book/getgenre",
+    }),
     getAllBooks: builder.query({
-      query: () => ({ url: "/book" }),
+      query: ({ year, genre, search }) => ({
+        url: `/book?year=${year}&genre=${genre}&search=${search}`,
+      }),
       providesTags: ["wishlist", "user"],
     }),
     getABook: builder.query({
@@ -36,7 +52,7 @@ const bookApi = createApi({
           method: "PATCH",
         };
       },
-      invalidatesTags: ["wishlist", "user"],
+      invalidatesTags: ["user"],
     }),
     removeWishlist: builder.mutation({
       query({ bookId }) {
@@ -47,6 +63,16 @@ const bookApi = createApi({
         };
       },
       invalidatesTags: ["wishlist", "user"],
+    }),
+    deleteABook: builder.mutation({
+      query({ bookId }) {
+        return {
+          url: `book/` + bookId,
+          method: "DELETE",
+          headers: { token: localStorage.getItem("token") || undefined },
+        };
+      },
+      invalidatesTags: ["user"],
     }),
     removeReading: builder.mutation({
       query({ bookId }) {
@@ -69,6 +95,7 @@ const bookApi = createApi({
       },
       providesTags: ["wishlist", "reading"],
     }),
+
     //user
     loginUser: builder.mutation({
       query({ email, password }) {
@@ -112,11 +139,14 @@ const bookApi = createApi({
 
 export const {
   useGetAllBooksQuery,
+  useCreateABookMutation,
   useGetABookQuery,
+  useDeleteABookMutation,
   useAddWishlistMutation,
   useRemoveWishlistMutation,
   useAddReadingMutation,
   useRemoveReadingMutation,
+  useGetGenreQuery,
   useGetBookInforFromUserQuery,
   useLoginUserMutation,
   useCreateUserMutation,

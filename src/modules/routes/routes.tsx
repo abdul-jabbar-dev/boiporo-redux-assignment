@@ -8,6 +8,10 @@ import Registration from "../pages/auth/Registration";
 import EditeBook from "../pages/book/EditeBook";
 import Wishlist from "../pages/Wishlist";
 import Reading from "../pages/Reading";
+import AddBook from "../pages/book/AddBook";
+import MyBooks from "../pages/book/MyBooks";
+import PrivetRoute from "./PrivetRoute";
+
 
 const customRoutes = createBrowserRouter([
   {
@@ -16,8 +20,11 @@ const customRoutes = createBrowserRouter([
     children: [{ path: "", element: <Home /> },
     { path: "books/:id", element: <BookDetails /> },
     { path: "editebooks/:id", element: <EditeBook /> },
-    { path: "wishlist", element: <Wishlist /> },
-    { path: "reading", element: <Reading /> }
+    { path: "wishlist", element: <PrivetRoute><Wishlist ></Wishlist></PrivetRoute> },
+    { path: "reading", element: <PrivetRoute><Reading /></PrivetRoute> },
+    { path: "addbook", element: <PrivetRoute><AddBook /></PrivetRoute> },
+    { path: "mybooks", element: <PrivetRoute><MyBooks /></PrivetRoute> },
+
     ],
   },
 

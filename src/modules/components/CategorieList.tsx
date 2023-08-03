@@ -1,26 +1,20 @@
-import { useEffect, useState } from "react";
-import IBooks from "../../types/books";
 
-export default function CategorieList({ books }: { books: IBooks[] }) {
-    const [category, setCategory] = useState<string[]>()
-    const [sCategory, setSCategory] = useState<string[]>(['Fantasy', 'Thriller'])
-    useEffect(() => {
-        setCategory(Array.from(new Set(books.map(b => b.genre))))
-    }, [books])
+import { useGetGenreQuery } from "../../redux/fetures/booksAPI/book";
+import { TFilter } from "../../types/books";
 
+export default function CategorieList({ filter, setFilter }: {
+    filter: TFilter, setFilter: React.Dispatch<React.SetStateAction<TFilter>>
+}) {
 
+    const { data: category } = useGetGenreQuery(undefined)
+    console.log(category)
     return (
         <div>
-            <div className="my-2">
-                Selected
-                <ul className="list-none ml-6 ">
-                    {sCategory.map(sc => <li className=" hover:text-sky-700 hover:cursor-pointer hover:underline text-md my-1" key={sc}>{sc} X </li>)}
-                </ul>
-            </div>
-            <hr />  
+
+            <div className="my-4"> selected: <p onClick={() => setFilter({ ...filter, genre: undefined })} className="inline hover:text-red-700 hover:cursor-pointer hover:underline text-md ">{filter.genre}</p>  </div>
             <ul className="list-none ml-6 ">
                 {
-                    category?.map(b => <li className=" hover:text-sky-700 hover:cursor-pointer hover:underline text-md my-1" key={b}>{b} </li>)
+                    category?.map((b: string) => <li onClick={() => setFilter({ ...filter, genre: b })} className=" hover:text-sky-700 hover:cursor-pointer hover:underline text-md my-1" key={b}>{b} </li>)
                 }
             </ul>
         </div>
