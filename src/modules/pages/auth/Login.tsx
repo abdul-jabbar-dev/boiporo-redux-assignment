@@ -7,16 +7,16 @@ import { useLoginUserMutation } from "../../../redux/fetures/booksAPI/book";
 
 export default function Login() {
     // const navigate = useNavigate()
-    const [makeLogin, { data, isLoading, error }] = useLoginUserMutation()
+    const [makeLogin, { isLoading, isSuccess, error }] = useLoginUserMutation()
     const location = useNavigate()
     const { register, handleSubmit, formState: { errors } } = useForm<TLoginInputs>();
     const onSubmit: SubmitHandler<TLoginInputs> = async (datas) => {
         try {
-            await makeLogin({ email: datas.email, password: datas.password })
-
-            if (data) {
-                if (data?.token) {
-                    localStorage.setItem('token', data?.token)
+            const response = await makeLogin({ email: datas.email, password: datas.password })
+            if ('data' in response) {
+                const data = response.data;
+                if (data.token) {
+                    localStorage.setItem('token', data.token)
                 }
             }
         } catch (error) {
@@ -28,8 +28,7 @@ export default function Login() {
     if (isLoading) {
         return <ClipLoader color="#36d7b7" />
     }
-    if (data) {
-
+    if (isSuccess) {
         alert('login successfully')
     } if (error) {
         alert('faild to login')

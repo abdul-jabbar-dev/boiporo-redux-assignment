@@ -7,5 +7,6 @@ type TUser = {
   reading: [string];
   createdAt: string;
   updatedAt: string;
+  token?:string
 };
 export default TUser;

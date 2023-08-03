@@ -5,7 +5,7 @@ import { ClipLoader } from "react-spinners";
 import { useCreateUserMutation } from "../../../redux/fetures/booksAPI/book";
 
 export default function Registration() {
-  const [makeRegistration, { data, isLoading, error }] = useCreateUserMutation()
+  const [makeRegistration, { isSuccess, isLoading, error }] = useCreateUserMutation()
   const location = useNavigate()
   const { register, handleSubmit, formState: { errors } } = useForm<TRegistrationInputs>();
 
@@ -13,7 +13,7 @@ export default function Registration() {
   if (isLoading) {
     return <ClipLoader color="#36d7b7" />
   }
-  if (data) {
+  if (isSuccess) {
     alert('user create successfully')
   } if (error) {
     console.log(error)
@@ -21,10 +21,12 @@ export default function Registration() {
 
 
   const onSubmit: SubmitHandler<TRegistrationInputs> = async (datas) => {
-    makeRegistration(datas)
-
-    if (data.token) {
-      localStorage.setItem('token', data.token)
+    const response = await makeRegistration(datas);
+    if ('data' in response) {
+      const data = response.data;
+      if (data.token) {
+        localStorage.setItem('token', data.token)
+      }
     }
   };
 
