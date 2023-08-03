@@ -17,15 +17,14 @@ export default function Registration() {
     alert('user create successfully')
   } if (error) {
     console.log(error)
-    alert(error?.data)
   }
 
 
-  const onSubmit: SubmitHandler<TRegistrationInputs> = async (data) => {
-    const result = makeRegistration(data)
+  const onSubmit: SubmitHandler<TRegistrationInputs> = async (datas) => {
+    makeRegistration(datas)
 
-    if (result?.data.token) {
-      localStorage.setItem('token', result.data.token)
+    if (data.token) {
+      localStorage.setItem('token', data.token)
     }
   };
 

@@ -1,20 +1,23 @@
 import { useNavigate } from "react-router-dom"
 import { useForm, SubmitHandler } from "react-hook-form";
 import { TLoginInputs } from "../../../types/auth";
- 
+
 import { ClipLoader } from "react-spinners";
 import { useLoginUserMutation } from "../../../redux/fetures/booksAPI/book";
+
 export default function Login() {
     // const navigate = useNavigate()
     const [makeLogin, { data, isLoading, error }] = useLoginUserMutation()
     const location = useNavigate()
     const { register, handleSubmit, formState: { errors } } = useForm<TLoginInputs>();
-    const onSubmit: SubmitHandler<TLoginInputs> = async (data) => {
+    const onSubmit: SubmitHandler<TLoginInputs> = async (datas) => {
         try {
-           const result =  await makeLogin({ email: data.email, password: data.password })
- 
-            if (result?.data.token  ) {
-                localStorage.setItem('token', result.data.token)
+            await makeLogin({ email: datas.email, password: datas.password })
+
+            if (data) {
+                if (data?.token) {
+                    localStorage.setItem('token', data?.token)
+                }
             }
         } catch (error) {
             console.error('Login error:', error);
@@ -29,7 +32,7 @@ export default function Login() {
 
         alert('login successfully')
     } if (error) {
-        alert((error as unknown as any)?.data)
+        alert('faild to login')
     }
 
     return (
