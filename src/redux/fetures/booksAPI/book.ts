@@ -5,7 +5,7 @@ const bookApi = createApi({
   reducerPath: "bookAPI",
   tagTypes: ["wishlist", "user", "reading"],
   baseQuery: fetchBaseQuery({
-    baseUrl: "http://localhost:4000",
+    baseUrl: "https://boiporo.onrender.com",
     credentials: "include",
   }),
   endpoints: (builder) => ({
